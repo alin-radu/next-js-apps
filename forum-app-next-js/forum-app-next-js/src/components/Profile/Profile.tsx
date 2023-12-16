@@ -5,9 +5,12 @@ import { useSession } from 'next-auth/react';
 export default function Profile() {
   const session = useSession();
 
-  let profile = 'From client: user is not Signed In';
+  let profile = '...';
 
-  if (session.data?.user) {
+  if (!session.data?.user && session.status === 'unauthenticated') {
+    profile = 'From client: user is Signed Out';
+  }
+  if (session.data?.user && session.status === 'authenticated') {
     profile = 'From client: user is Signed In';
   }
 

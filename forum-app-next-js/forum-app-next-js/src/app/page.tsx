@@ -1,5 +1,5 @@
 import * as actions from '@/actions';
-import { auth } from '@/auth';
+import { auth } from '@/utils/auth';
 
 import Profile from '@/components/Profile/Profile';
 
@@ -21,7 +21,7 @@ export default async function Home() {
       {session?.user ? (
         <div>From server: user {session.user.name} is Signed In</div>
       ) : (
-        <div>From server: user is not Signed In</div>
+        <div>From server: user is Signed Out</div>
       )}
 
       <Profile />
