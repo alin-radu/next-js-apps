@@ -1,3 +1,3 @@
 export default function PostCreatePage() {
-  return <div>PostCreatePage</div>;
+  return <div>Post Show Page</div>;
 }
