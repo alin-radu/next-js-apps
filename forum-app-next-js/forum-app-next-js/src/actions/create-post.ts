@@ -5,9 +5,8 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 import { auth } from '@/utils/auth';
-import { db } from '@/db';
-
 import { paths } from '@/utils/paths';
+import { db } from '@/db';
 
 import type { Post } from '@prisma/client';
 

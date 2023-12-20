@@ -15,7 +15,7 @@ interface AvatarComponentsProps {
   name: string;
 }
 
-const AvatarComponent = ({ name, image }: AvatarComponentsProps) => (
+const Avatar = ({ name, image }: AvatarComponentsProps) => (
   <Popover placement="left">
     <PopoverTrigger>
       <User
@@ -37,7 +37,7 @@ const AvatarComponent = ({ name, image }: AvatarComponentsProps) => (
   </Popover>
 );
 
-const SignInButtonComponent = () => (
+const SignInButton = () => (
   <NavbarItem>
     <form action={actions.signIn}>
       <Button type="submit" color="secondary" variant="bordered">
@@ -47,7 +47,7 @@ const SignInButtonComponent = () => (
   </NavbarItem>
 );
 
-const SignUpButtonComponent = () => (
+const SignUpButton = () => (
   <NavbarItem>
     <form action={actions.signIn}>
       <Button type="submit" color="primary" variant="flat">
@@ -67,7 +67,7 @@ export function HeaderAuth() {
       break;
     case 'authenticated':
       authContent = (
-        <AvatarComponent
+        <Avatar
           name={session.data.user?.name || ''}
           image={session.data.user?.image || ''}
         />
@@ -76,8 +76,8 @@ export function HeaderAuth() {
     default:
       authContent = (
         <>
-          <SignInButtonComponent />
-          <SignUpButtonComponent />
+          <SignInButton />
+          <SignUpButton />
         </>
       );
   }

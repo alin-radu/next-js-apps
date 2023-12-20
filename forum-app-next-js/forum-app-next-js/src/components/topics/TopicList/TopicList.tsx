@@ -8,7 +8,7 @@ import { Chip } from '@nextui-org/react';
 
 import type { Topic } from '@prisma/client';
 
-const TopicComponent = ({ topic }: { topic: Topic }) => (
+const TopicItem = ({ topic }: { topic: Topic }) => (
   <div key={topic.id}>
     <Link href={paths.topicShow(topic.slug)}>
       <Chip color="warning" variant="shadow">
@@ -22,7 +22,7 @@ export async function TopicList() {
   const topics = await db.topic.findMany();
 
   const renderedTopics = topics.map((topic) => (
-    <TopicComponent key={topic.id} topic={topic} />
+    <TopicItem key={topic.id} topic={topic} />
   ));
 
   return <div className="flex flex-row flex-wrap gap-2">{renderedTopics}</div>;
