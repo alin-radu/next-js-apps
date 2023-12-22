@@ -1,3 +1,4 @@
+import { getDelay } from '@/utils/getDelay';
 import { PostItem } from '../PostItem';
 
 import type { PostWithData } from '@/db/queries/posts';
@@ -7,6 +8,8 @@ interface PostListProps {
 }
 
 export async function PostList({ fetchData }: PostListProps) {
+  await getDelay(1500);
+
   const posts = await fetchData();
 
   const renderedPosts = posts.map((post) => {

@@ -10,7 +10,7 @@ import { HeaderAuth } from '../HeaderAuth';
 
 export function Header() {
   return (
-    <Navbar className="shadow mb-6">
+    <Navbar className="shadow mb-6 mt-6">
       <NavbarBrand>
         <Link href="/" className="font-bold">
           Forum
