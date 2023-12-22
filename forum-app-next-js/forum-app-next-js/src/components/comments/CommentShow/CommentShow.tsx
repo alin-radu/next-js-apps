@@ -1,25 +1,12 @@
-import Image from 'next/image';
-import { Button } from '@nextui-org/react';
-import { CommentCreateForm } from '../CommentCreateForm';
 import { CommentWithAuthor } from '@/db/queries/comments';
+import { getFormatedDateHelper } from '@/utils/dateHelpers';
+
+import Image from 'next/image';
+import { CommentCreateForm } from '../CommentCreateForm';
 
 interface CommentShowProps {
   commentId: string;
   comments: CommentWithAuthor[];
-}
-
-function formatDate(date: Date) {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? 0 + minutes : minutes;
-  let strTime = hours + ':' + minutes + ' ' + ampm;
-
-  return (
-    date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + '  ' + strTime
-  );
 }
 
 // TODO: Get a list of comments
@@ -29,8 +16,7 @@ export function CommentShow({ commentId, comments }: CommentShowProps) {
   if (!comment) {
     return null;
   }
-  const date = new Date(comment.createdAt);
-  const formatedDate = formatDate(date);
+  const formatedDate = getFormatedDateHelper(comment.createdAt);
 
   const children = comments.filter((c) => c.parentId === commentId);
   const renderedChildren = children.map((child) => {
@@ -51,7 +37,7 @@ export function CommentShow({ commentId, comments }: CommentShowProps) {
           <div className="flex">
             <p className="text-sm font-medium text-gray-600">{comment.user.name}</p>
             &nbsp; &nbsp;
-            <p className="text-sm font-medium text-gray-400">{formatedDate}</p>
+            <p className="text-sm font-small text-gray-400">{formatedDate}</p>
           </div>
 
           <p className="text-gray-900">{comment.content}</p>
