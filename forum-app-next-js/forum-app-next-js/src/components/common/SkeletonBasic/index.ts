@@ -1,1 +1,0 @@
-export { SkeletonBasic } from './SkeletonBasic';

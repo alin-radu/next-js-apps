@@ -1,1 +1,0 @@
-export { CommentCreateForm } from './CommentCreateForm';
