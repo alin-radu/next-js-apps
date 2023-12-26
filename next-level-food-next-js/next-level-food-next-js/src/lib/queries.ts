@@ -16,8 +16,6 @@ export async function getMeals() {
 }
 
 export async function getMeal(slug: string) {
-  await getDelay(100);
-
   return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug);
 }
 
