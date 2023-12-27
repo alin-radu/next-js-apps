@@ -6,12 +6,9 @@ import sql from 'better-sqlite3';
 import slugify from 'slugify';
 import xss from 'xss';
 
-import { getDelay } from '@/utils/getDelay';
 import { MealFormData } from '@/types/meal';
 
 export async function getMeals() {
-  await getDelay(1500);
-
   return db.prepare('SELECT * FROM meals').all();
 }
 
