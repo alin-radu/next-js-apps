@@ -1,13 +1,17 @@
 import Image from 'next/image';
 
+import { User } from '@/lib/db-models';
+
 import styles from './PostUserStyle.module.css';
+import { getUser } from '@/lib/db-utils';
 
 interface PostUserProps {
   userId: string;
 }
 
-const PostUser = ({ userId }: PostUserProps) => {
-  const user = {} as User;
+const PostUser = async ({ userId }: PostUserProps) => {
+  const userData: Promise<User> = getUser(userId);
+  const user = await userData;
 
   return (
     <div className={styles.container}>
@@ -20,7 +24,7 @@ const PostUser = ({ userId }: PostUserProps) => {
       />
       <div className={styles.texts}>
         <span className={styles.title}>Author</span>
-        <span className={styles.username}>{user.username}</span>
+        <span className={styles.username}>{user.username ? user.username : '-'}</span>
       </div>
     </div>
   );

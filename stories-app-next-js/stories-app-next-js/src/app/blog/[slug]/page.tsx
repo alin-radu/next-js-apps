@@ -1,15 +1,25 @@
 import Image from 'next/image';
+import { getPost } from '@/lib/db-utils';
 
 import PostUser from '@/components/post/PostUser/PostUser';
 
-import styles from './singlePost.module.css';
+import { Post } from '@/lib/db-models';
+
+import styles from './pageStyle.module.css';
+import { formatDate } from '@/lib/date-utils';
+import { Suspense } from 'react';
 
 interface SinglePostProps {
-  params: string;
+  params: {
+    slug: string;
+  };
 }
 
 const SinglePostPage = async ({ params }: SinglePostProps) => {
-  const post = {} as Post;
+  const { slug } = params;
+
+  const postData: Promise<Post> = getPost(slug);
+  const post = await postData;
 
   return (
     <div className={styles.container}>
@@ -21,11 +31,15 @@ const SinglePostPage = async ({ params }: SinglePostProps) => {
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
-          {post && <PostUser userId={String(post.userId) || ''} />}
+          {post && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <PostUser userId={String(post.userId) || ''} />
+            </Suspense>
+          )}
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt?.toString().slice(4, 16)}
+              {post.createdAt ? formatDate(post.createdAt) : '-'}
             </span>
           </div>
         </div>

@@ -1,8 +1,11 @@
 import Link from 'next/link';
-
 import Image from 'next/image';
 
+import { formatDate } from '@/lib/date-utils';
+
 import styles from './PostCardStyle.module.css';
+
+import { Post } from '@/lib/db-models';
 
 const PostCard = ({ post }: { post: Post }) => {
   return (
@@ -13,11 +16,11 @@ const PostCard = ({ post }: { post: Post }) => {
             <Image src={post.img} alt="" fill className={styles.img} />
           </div>
         )}
-        <span className={styles.date}>{post.createdAt?.toString().slice(4, 16)}</span>
+        <span className={styles.date}>{formatDate(post.createdAt)}</span>
       </div>
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
-        <p className={styles.desc}>{post.body}</p>
+        <p className={styles.desc}>{post.desc}</p>
         <Link className={styles.link} href={`/blog/${post.slug}`}>
           READ MORE
         </Link>
