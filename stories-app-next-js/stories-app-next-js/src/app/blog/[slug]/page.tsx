@@ -15,6 +15,31 @@ interface SinglePostProps {
   };
 }
 
+const getData = async (slug: string) => {
+  const response = await fetch(`http://localhost:3000/api/blog/${slug}`);
+
+  if (!response.ok) {
+    throw new Error('Something went wrong!');
+  }
+
+  return response.json();
+};
+
+export const generateMetadata = async ({ params }: SinglePostProps) => {
+  const { slug } = params;
+
+  // Note: fetch post WITH an API
+  const post: Post = await getData(slug);
+
+  // Note: fetch posts without an API
+  // const post: Post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 const SinglePostPage = async ({ params }: SinglePostProps) => {
   const { slug } = params;
 

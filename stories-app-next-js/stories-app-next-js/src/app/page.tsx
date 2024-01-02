@@ -2,6 +2,11 @@ import Image from 'next/image';
 
 import styles from './pageStyle.module.css';
 
+export const metadata = {
+  title: 'Home',
+  description: 'A nice way to share stories.',
+};
+
 const Home = () => {
   return (
     <div className={styles.container}>

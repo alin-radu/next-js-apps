@@ -59,7 +59,7 @@ export const getPost = async (slug: string) => {
 
 // USERS
 export const getUser = async (id: string) => {
-  await getDelay(1500);
+  // await getDelay(1500);
   try {
     connectDatabase();
     const user = await User.findById(id);

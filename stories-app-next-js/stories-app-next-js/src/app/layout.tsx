@@ -7,8 +7,11 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Next App',
-  description: 'Next.js starter app',
+  title: {
+    default: 'Stories',
+    template: '%s | stories',
+  },
+  description: 'A nice way to share stories.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

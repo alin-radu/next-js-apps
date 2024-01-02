@@ -1,3 +1,5 @@
+import { auth } from '@/lib/auth';
+
 import Link from 'next/link';
 import Links from './links/Links';
 
@@ -8,14 +10,16 @@ const logoLink = {
   path: '/',
 };
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await auth();
+
   return (
     <div className={styles.container}>
       <Link href={logoLink.path} className={styles.logo}>
         {logoLink.title}
       </Link>
       <div>
-        <Links />
+        <Links session={session} />
       </div>
     </div>
   );

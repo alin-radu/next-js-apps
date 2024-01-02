@@ -10,8 +10,7 @@ interface PostUserProps {
 }
 
 const PostUser = async ({ userId }: PostUserProps) => {
-  const userData: Promise<User> = getUser(userId);
-  const user = await userData;
+  const user: User = await getUser(userId);
 
   return (
     <div className={styles.container}>
