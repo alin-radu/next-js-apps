@@ -44,7 +44,7 @@ const adminLink = {
 const LinksComponent = ({ links }: { links: Link[] }) =>
   links.map((link) => <LinkItem key={link.title} item={link} />);
 
-export default function Links({ session }: { session: Session }) {
+export default function Links({ session }: { session: Session | null }) {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleSetOpen = () => {
