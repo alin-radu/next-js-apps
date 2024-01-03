@@ -6,7 +6,7 @@ import * as actions from '@/actions';
 
 import Image from 'next/image';
 
-import LinkItem from './LinkItem/LinkItem';
+import LinkItem from '../LinkItem/LinkItem';
 
 import styles from './LinksStyle.module.css';
 
@@ -41,7 +41,7 @@ const adminLink = {
   path: '/admin',
 };
 
-const LinksComponent = ({ links }: { links: Link[] }) =>
+const LinksArr = ({ links }: { links: Link[] }) =>
   links.map((link) => <LinkItem key={link.title} item={link} />);
 
 export default function Links({ session }: { session: Session | null }) {
@@ -56,7 +56,7 @@ export default function Links({ session }: { session: Session | null }) {
   return (
     <div className={styles.container}>
       <div className={styles.links}>
-        <LinksComponent links={links} />
+        <LinksArr links={links} />
         {session?.user ? (
           <>
             {session.user?.isAdmin && <LinkItem item={adminLink} />}
@@ -78,7 +78,7 @@ export default function Links({ session }: { session: Session | null }) {
       />
       {open && (
         <div className={styles.mobileLinks}>
-          <LinksComponent links={links} />
+          <LinksArr links={links} />
         </div>
       )}
     </div>

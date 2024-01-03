@@ -1,4 +1,4 @@
-import PostCard from '@/components/post/postCard/PostCard';
+import PostCard from '@/components/post/PostCard/PostCard';
 import { getPosts } from '@/lib/db-utils';
 
 import { Post } from '@/lib/db-models';

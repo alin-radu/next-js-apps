@@ -58,5 +58,5 @@ const postSchema = new Schema(
 export const User = models?.User || model('User', userSchema);
 export const Post = models?.Post || model('Post', postSchema);
 
-export type User = InferSchemaType<typeof userSchema>;
-export type Post = InferSchemaType<typeof postSchema>;
+export type UserType = InferSchemaType<typeof userSchema>;
+export type PostType = InferSchemaType<typeof postSchema>;
